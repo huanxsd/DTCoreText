@@ -524,18 +524,6 @@ NSDictionary *_classesForNames = nil;
 		// block-level elements get space trimmed and a newline
 		if (_displayStyle != DTHTMLElementDisplayStyleInline)
 		{
-			// trim off whitespace prefix
-			while ([[tmpString string] hasPrefix:@" "])
-			{
-				[tmpString deleteCharactersInRange:NSMakeRange(0, 1)];
-			}
-			
-			// trim off whitespace suffix
-			while ([[tmpString string] hasSuffix:@" "])
-			{
-				[tmpString deleteCharactersInRange:NSMakeRange([tmpString length]-1, 1)];
-			}
-			
 			if (![self.name isEqualToString:@"html"] && ![self.name isEqualToString:@"body"])
 			{
 				if (![[tmpString string] hasSuffix:@"\n"])
