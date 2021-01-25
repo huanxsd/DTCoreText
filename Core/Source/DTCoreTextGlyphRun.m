@@ -129,9 +129,9 @@
 	CGFloat smallestPixelWidth = 1.0f/contentScale;
 	
 	DTColor *backgroundColor = [self.attributes backgroundColor];
-	
+    
 	// -------------- Line-Out, Underline, Background-Color
-	BOOL drawStrikeOut = [[_attributes objectForKey:DTStrikeOutAttribute] boolValue];
+    BOOL drawStrikeOut = [[_attributes objectForKey:NSStrikethroughStyleAttributeName] boolValue];
 	BOOL drawUnderline = [[_attributes objectForKey:(id)kCTUnderlineStyleAttributeName] boolValue];
 	
 	if (drawStrikeOut||drawUnderline||backgroundColor)
@@ -187,14 +187,14 @@
 			
 			if (usedFont)
 			{
-				fontUnderlineThickness = CTFontGetUnderlineThickness(usedFont) * smallestPixelWidth;
+				fontUnderlineThickness = CTFontGetUnderlineThickness(usedFont);
 			}
 			else
 			{
 				fontUnderlineThickness = smallestPixelWidth;
 			}
 			
-			CGFloat usedUnderlineThickness = DTCeilWithContentScale(fontUnderlineThickness, contentScale);
+			CGFloat usedUnderlineThickness = fontUnderlineThickness;
 			
 			CGContextSetLineWidth(context, usedUnderlineThickness);
 			
