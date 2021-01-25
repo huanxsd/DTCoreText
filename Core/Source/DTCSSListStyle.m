@@ -399,7 +399,7 @@
 		}
 		case DTCSSListStyleTypeDisc:
 		{
-			token = @"\u2022";
+            token = @"●";
 			break;
 		}
 		case DTCSSListStyleTypeUpperAlpha:
