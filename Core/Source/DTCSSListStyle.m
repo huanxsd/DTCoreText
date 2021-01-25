@@ -405,15 +405,13 @@
 		case DTCSSListStyleTypeUpperAlpha:
 		case DTCSSListStyleTypeUpperLatin:
 		{
-			char letter = 'A' + (char)(counter - 1);
-			token = [NSString stringWithFormat:@"%c.", letter];
+            token = [self alphaToken:'A' counter:counter];
 			break;
 		}
 		case DTCSSListStyleTypeLowerAlpha:
 		case DTCSSListStyleTypeLowerLatin:
 		{
-			char letter = 'a' + (char)(counter - 1);
-			token = [NSString stringWithFormat:@"%c.", letter];
+            token = [self alphaToken:'a' counter:counter];
 			break;
 		}
 		case DTCSSListStyleTypePlus:
@@ -451,6 +449,17 @@
 	{
 		return [NSString stringWithFormat:@"\x09%@\x09", token];
 	}
+}
+
+- (NSString *)alphaToken:(char)start counter:(NSInteger)counter {
+    if (counter <= 26) {
+        char letter = start + (char)(counter - 1);
+        return [NSString stringWithFormat:@"%c.", letter];
+    } else {
+        char letter1 = start + (char)((counter - 1) / 26) - 1;
+        char letter2 = start + (char)((counter - 1) % 26);
+        return [NSString stringWithFormat:@"%c%c.", letter1, letter2];
+    }
 }
 
 - (BOOL)isOrdered
