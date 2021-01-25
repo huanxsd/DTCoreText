@@ -447,7 +447,13 @@
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"\x09%@\x09", token];
+        // Number list icon and bulleted icon are not aligned
+        if ([token isEqualToString:@"\u2022"]) {
+            return [NSString stringWithFormat:@"\x09%@ \x09", token];
+        } else {
+            return [NSString stringWithFormat:@"\x09%@\x09", token];
+        }
+
 	}
 }
 
