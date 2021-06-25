@@ -296,12 +296,6 @@
 	double width = CTLineGetTypographicBounds(tmpLine, NULL, NULL, NULL);
 	CFRelease(tmpLine);
 	
-	// if the non-whitespace characters are too wide then we omit the prefix
-	if ((width+5.0)>_margins.left)
-	{
-		return nil;
-	}
-	
 	return tmpStr;
 }
 

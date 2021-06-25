@@ -451,6 +451,10 @@
         if ([token isEqualToString:@"\u2022"]) {
             return [NSString stringWithFormat:@"\x09%@ \x09", token];
         } else {
+            // MTR-53631: When the token is too long, the distance between the token and the content will become very large. Therefore, when the token is very long, \x09 are not used
+            if (token.length > 4) {
+                return [NSString stringWithFormat:@"\x09%@ ", token];
+            }
             return [NSString stringWithFormat:@"\x09%@\x09", token];
         }
 
